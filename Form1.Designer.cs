@@ -37,6 +37,8 @@
             this.signIn = new System.Windows.Forms.Button();
             this.signUp = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.signOut = new System.Windows.Forms.LinkLabel();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -116,11 +118,24 @@
             // 
             this.panel1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel1.BackgroundImage")));
             this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.panel1.Controls.Add(this.signOut);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(914, 600);
             this.panel1.TabIndex = 7;
+            // 
+            // signOut
+            // 
+            this.signOut.AutoSize = true;
+            this.signOut.BackColor = System.Drawing.Color.Transparent;
+            this.signOut.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.signOut.Location = new System.Drawing.Point(799, 9);
+            this.signOut.Name = "signOut";
+            this.signOut.Size = new System.Drawing.Size(94, 28);
+            this.signOut.TabIndex = 0;
+            this.signOut.TabStop = true;
+            this.signOut.Text = "Sign Out";
             // 
             // loginPage
             // 
@@ -140,6 +155,8 @@
             this.Name = "loginPage";
             this.Text = "Login ";
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -155,5 +172,6 @@
         private Button signIn;
         private Button signUp;
         private Panel panel1;
+        private LinkLabel signOut;
     }
 }

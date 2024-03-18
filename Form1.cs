@@ -18,6 +18,8 @@ namespace homeFitnessSite
             SetBackgroundImage();
             //this should activate the button click event
             signIn.Click += signIn_Click;
+            //linkClicked event of the signout LinkLabel
+            signOut.LinkClicked += signOut_LinkClicked;
         }
 
 
@@ -109,6 +111,15 @@ namespace homeFitnessSite
         {
         }
 
- 
+        private void signOut_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            // Hide panel1
+            panel1.Visible = false;
+            // Clear email and password textboxes
+            emailText.Text = "";
+            passwordText.Text = "";
+        }
+
+
     }
 }
