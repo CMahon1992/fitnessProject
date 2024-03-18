@@ -12,12 +12,14 @@ namespace homeFitnessSite
         public loginPage()
         {
             InitializeComponent();
+            // Hide panel1
+            panel1.Visible = false;
             // Set the background image and adjust its layout
             SetBackgroundImage();
             //this should activate the button click event
             signIn.Click += signIn_Click;
         }
-    
+
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -91,17 +93,22 @@ namespace homeFitnessSite
                     if (count > 0)
                     {
                         MessageBox.Show("Login success!");
+                        // show panel1
+                        panel1.Visible = true;
                     }
                     else
                     {
                         MessageBox.Show("Error: Please check your login credentials.");
                     }
                 }
+
             }
         }
 
         private void label1_Click(object sender, EventArgs e)
         {
         }
+
+ 
     }
 }
