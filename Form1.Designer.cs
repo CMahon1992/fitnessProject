@@ -45,6 +45,12 @@
             this.routineDDB = new System.Windows.Forms.ComboBox();
             this.signOut = new System.Windows.Forms.LinkLabel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.submitP2 = new System.Windows.Forms.Button();
+            this.listBox2 = new System.Windows.Forms.ListBox();
+            this.cWeight = new System.Windows.Forms.TextBox();
+            this.gWeight = new System.Windows.Forms.TextBox();
+            this.current = new System.Windows.Forms.Label();
+            this.goal = new System.Windows.Forms.Label();
             this.workoutLink2 = new System.Windows.Forms.LinkLabel();
             this.progressLink2 = new System.Windows.Forms.LinkLabel();
             this.routinesLink2 = new System.Windows.Forms.LinkLabel();
@@ -220,6 +226,12 @@
             // 
             this.panel2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel2.BackgroundImage")));
             this.panel2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.panel2.Controls.Add(this.submitP2);
+            this.panel2.Controls.Add(this.listBox2);
+            this.panel2.Controls.Add(this.cWeight);
+            this.panel2.Controls.Add(this.gWeight);
+            this.panel2.Controls.Add(this.current);
+            this.panel2.Controls.Add(this.goal);
             this.panel2.Controls.Add(this.workoutLink2);
             this.panel2.Controls.Add(this.progressLink2);
             this.panel2.Controls.Add(this.routinesLink2);
@@ -230,6 +242,58 @@
             this.panel2.Size = new System.Drawing.Size(809, 448);
             this.panel2.TabIndex = 8;
             this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
+            // 
+            // submitP2
+            // 
+            this.submitP2.Location = new System.Drawing.Point(384, 365);
+            this.submitP2.Name = "submitP2";
+            this.submitP2.Size = new System.Drawing.Size(75, 23);
+            this.submitP2.TabIndex = 15;
+            this.submitP2.Text = "Submit";
+            this.submitP2.UseVisualStyleBackColor = true;
+            // 
+            // listBox2
+            // 
+            this.listBox2.FormattingEnabled = true;
+            this.listBox2.ItemHeight = 15;
+            this.listBox2.Location = new System.Drawing.Point(275, 287);
+            this.listBox2.Name = "listBox2";
+            this.listBox2.Size = new System.Drawing.Size(279, 34);
+            this.listBox2.TabIndex = 14;
+            // 
+            // cWeight
+            // 
+            this.cWeight.Location = new System.Drawing.Point(654, 236);
+            this.cWeight.Name = "cWeight";
+            this.cWeight.Size = new System.Drawing.Size(100, 23);
+            this.cWeight.TabIndex = 13;
+            // 
+            // gWeight
+            // 
+            this.gWeight.Location = new System.Drawing.Point(224, 241);
+            this.gWeight.Name = "gWeight";
+            this.gWeight.Size = new System.Drawing.Size(100, 23);
+            this.gWeight.TabIndex = 12;
+            // 
+            // current
+            // 
+            this.current.AutoSize = true;
+            this.current.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.current.Location = new System.Drawing.Point(462, 236);
+            this.current.Name = "current";
+            this.current.Size = new System.Drawing.Size(149, 25);
+            this.current.TabIndex = 11;
+            this.current.Text = "Current Weight";
+            // 
+            // goal
+            // 
+            this.goal.AutoSize = true;
+            this.goal.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.goal.Location = new System.Drawing.Point(59, 236);
+            this.goal.Name = "goal";
+            this.goal.Size = new System.Drawing.Size(121, 25);
+            this.goal.TabIndex = 10;
+            this.goal.Text = "Goal Weight";
             // 
             // workoutLink2
             // 
@@ -322,5 +386,11 @@
         private LinkLabel progressLink2;
         private LinkLabel routinesLink2;
         private LinkLabel signOut2;
+        private Button submitP2;
+        private ListBox listBox2;
+        private TextBox cWeight;
+        private TextBox gWeight;
+        private Label current;
+        private Label goal;
     }
 }

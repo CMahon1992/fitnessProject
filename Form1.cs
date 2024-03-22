@@ -27,6 +27,11 @@ namespace WinFormsApp1
             routinesLink2.LinkClicked += routinesLink2_LinkClicked;
             // LinkClicked event for signOut2 in panel2
             signOut2.LinkClicked += signOut2_LinkClicked;
+            // Click event for submitP2 button
+            submitP2.Click += submitP2_Click;
+            // Event handlers for textboxes to allow only numbers and limit input to 3 digits
+            cWeight.KeyPress += NumericTextBox_KeyPress;
+            gWeight.KeyPress += NumericTextBox_KeyPress;
         }
 
 
@@ -136,6 +141,141 @@ namespace WinFormsApp1
             // Show panel1 and hide panel2 when routinesLink is clicked on panel2
             panel1.Visible = true;
             panel2.Visible = false;
+        }
+
+        private void submitP2_Click(object sender, EventArgs e)
+        {
+            // Get the email entered in the emailText textbox
+            string email = emailText.Text;
+
+            // Check if the email exists in the fitnessProgress table
+            bool emailExists = CheckIfEmailExists(email);
+
+            // If the email doesn't exist in the fitnessProgress_new table, it needs to be added
+            if (!emailExists)
+            {
+                AddEmailToFitnessProgress(email);
+                MessageBox.Show("Email added to fitnessProgress table.");
+            }
+            else
+            {
+                MessageBox.Show("Email already exists in fitnessProgress table.");
+            }
+
+            // Insert the entered weights into the fitnessProgress_new table
+            if (int.TryParse(cWeight.Text, out int currentWeight) && int.TryParse(gWeight.Text, out int goalWeight))
+            {
+                // Insert the weights into the fitnessProgress_new table
+                AddWeightsToFitnessProgress(email, currentWeight, goalWeight);
+
+                // Calculate the weight difference
+                int weightDifference = currentWeight - goalWeight;
+
+                // Clear previous messages in listBox2
+                listBox2.Items.Clear();
+
+                // Display appropriate message in listBox2 based on weight difference
+                if (weightDifference > 0)
+                {
+                    // If cWeight is greater than gWeight
+                    listBox2.Items.Add("You are " + weightDifference + " pounds from your goal weight.");
+                }
+                else if (weightDifference == 0)
+                {
+                    // If cWeight is equal to gWeight
+                    listBox2.Items.Add("You have reached your goal weight!");
+                }
+                else
+                {
+                    // If cWeight is less than gWeight
+                    listBox2.Items.Add("You are under your goal weight.");
+                }
+
+                MessageBox.Show("Weights added to fitnessProgress table.");
+            }
+            else
+            {
+                MessageBox.Show("Please enter valid weights (positive integers).");
+            }
+        }
+        
+
+         private void NumericTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Allow only digits and backspace
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != (char)Keys.Back)
+            {
+                e.Handled = true;
+            }
+            // Limit input to 3 digits
+            if ((sender as TextBox).Text.Length >= 3 && e.KeyChar != (char)Keys.Back)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private bool CheckIfEmailExists(string email)
+        {
+            // Query to check if the email exists in the fitnessProgress table
+            string query = "SELECT COUNT(*) FROM fitnessProgress_new WHERE email = @Email";
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@Email", email);
+                    connection.Open();
+
+                    // Execute the query and get the result
+                    int count = (int)command.ExecuteScalar();
+
+                    // If count > 0, the email exists in the table
+                    return count > 0;
+                }
+            }
+        }
+
+        private void AddEmailToFitnessProgress(string email)
+        {
+            // Query to insert the email into the fitnessProgress table
+            string insertQuery = "INSERT INTO fitnessProgress_new (email) VALUES (@Email)";
+
+            // Create and open a connection to the database
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+
+                // Create a SqlCommand object with the insert query and connection
+                using (SqlCommand command = new SqlCommand(insertQuery, connection))
+                {
+                    // Add parameter to the query to prevent SQL injection
+                    command.Parameters.AddWithValue("@Email", email);
+
+                    // Execute the insert query
+                    command.ExecuteNonQuery();
+                    
+                    // Inform the user that the email has been added
+                    MessageBox.Show("Email added to fitnessProgress table.");
+                }
+            }
+        }
+
+        private void AddWeightsToFitnessProgress(string email, int currentWeight, int goalWeight)
+        {
+            // Query to update CurrentWeight and GoalWeight columns in the fitnessProgress table
+            string query = "UPDATE fitnessProgress_new SET CurrentWeight = @CurrentWeight, GoalWeight = @GoalWeight WHERE email = @Email";
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@Email", email);
+                    command.Parameters.AddWithValue("@CurrentWeight", currentWeight);
+                    command.Parameters.AddWithValue("@GoalWeight", goalWeight);
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                }
+            }
         }
 
         private void signOut2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
