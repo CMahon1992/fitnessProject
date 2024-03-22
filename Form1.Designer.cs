@@ -37,14 +37,20 @@
             this.signIn = new System.Windows.Forms.Button();
             this.signUp = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.signOut = new System.Windows.Forms.LinkLabel();
-            this.routineDDB = new System.Windows.Forms.ComboBox();
-            this.routinesLink = new System.Windows.Forms.LinkLabel();
-            this.progressLink = new System.Windows.Forms.LinkLabel();
-            this.workoutLink = new System.Windows.Forms.LinkLabel();
-            this.listBox1 = new System.Windows.Forms.ListBox();
             this.muscleLabel = new System.Windows.Forms.Label();
+            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.workoutLink = new System.Windows.Forms.LinkLabel();
+            this.progressLink = new System.Windows.Forms.LinkLabel();
+            this.routinesLink = new System.Windows.Forms.LinkLabel();
+            this.routineDDB = new System.Windows.Forms.ComboBox();
+            this.signOut = new System.Windows.Forms.LinkLabel();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.workoutLink2 = new System.Windows.Forms.LinkLabel();
+            this.progressLink2 = new System.Windows.Forms.LinkLabel();
+            this.routinesLink2 = new System.Windows.Forms.LinkLabel();
+            this.signOut2 = new System.Windows.Forms.LinkLabel();
             this.panel1.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -133,17 +139,55 @@
             this.panel1.TabIndex = 7;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
-            // signOut
+            // muscleLabel
             // 
-            this.signOut.AutoSize = true;
-            this.signOut.BackColor = System.Drawing.Color.Transparent;
-            this.signOut.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.signOut.Location = new System.Drawing.Point(683, 22);
-            this.signOut.Name = "signOut";
-            this.signOut.Size = new System.Drawing.Size(71, 21);
-            this.signOut.TabIndex = 0;
-            this.signOut.TabStop = true;
-            this.signOut.Text = "Sign Out";
+            this.muscleLabel.AutoSize = true;
+            this.muscleLabel.BackColor = System.Drawing.Color.Transparent;
+            this.muscleLabel.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.muscleLabel.Location = new System.Drawing.Point(275, 211);
+            this.muscleLabel.Name = "muscleLabel";
+            this.muscleLabel.Size = new System.Drawing.Size(279, 30);
+            this.muscleLabel.TabIndex = 7;
+            this.muscleLabel.Text = "Choose Your Muscle Group";
+            // 
+            // listBox1
+            // 
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.ItemHeight = 15;
+            this.listBox1.Location = new System.Drawing.Point(158, 314);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(510, 94);
+            this.listBox1.TabIndex = 6;
+            // 
+            // workoutLink
+            // 
+            this.workoutLink.AutoSize = true;
+            this.workoutLink.Location = new System.Drawing.Point(589, 150);
+            this.workoutLink.Name = "workoutLink";
+            this.workoutLink.Size = new System.Drawing.Size(79, 15);
+            this.workoutLink.TabIndex = 5;
+            this.workoutLink.TabStop = true;
+            this.workoutLink.Text = "Workout Plan";
+            // 
+            // progressLink
+            // 
+            this.progressLink.AutoSize = true;
+            this.progressLink.Location = new System.Drawing.Point(368, 150);
+            this.progressLink.Name = "progressLink";
+            this.progressLink.Size = new System.Drawing.Size(91, 15);
+            this.progressLink.TabIndex = 4;
+            this.progressLink.TabStop = true;
+            this.progressLink.Text = "Fitness Progress";
+            // 
+            // routinesLink
+            // 
+            this.routinesLink.AutoSize = true;
+            this.routinesLink.Location = new System.Drawing.Point(150, 150);
+            this.routinesLink.Name = "routinesLink";
+            this.routinesLink.Size = new System.Drawing.Size(94, 15);
+            this.routinesLink.TabIndex = 3;
+            this.routinesLink.TabStop = true;
+            this.routinesLink.Text = "Browse Routines";
             // 
             // routineDDB
             // 
@@ -160,55 +204,74 @@
             this.routineDDB.Size = new System.Drawing.Size(121, 23);
             this.routineDDB.TabIndex = 1;
             // 
-            // routinesLink
+            // signOut
             // 
-            this.routinesLink.AutoSize = true;
-            this.routinesLink.Location = new System.Drawing.Point(150, 150);
-            this.routinesLink.Name = "routinesLink";
-            this.routinesLink.Size = new System.Drawing.Size(94, 15);
-            this.routinesLink.TabIndex = 3;
-            this.routinesLink.TabStop = true;
-            this.routinesLink.Text = "Browse Routines";
+            this.signOut.AutoSize = true;
+            this.signOut.BackColor = System.Drawing.Color.Transparent;
+            this.signOut.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.signOut.Location = new System.Drawing.Point(683, 22);
+            this.signOut.Name = "signOut";
+            this.signOut.Size = new System.Drawing.Size(71, 21);
+            this.signOut.TabIndex = 0;
+            this.signOut.TabStop = true;
+            this.signOut.Text = "Sign Out";
             // 
-            // progressLink
+            // panel2
             // 
-            this.progressLink.AutoSize = true;
-            this.progressLink.Location = new System.Drawing.Point(368, 150);
-            this.progressLink.Name = "progressLink";
-            this.progressLink.Size = new System.Drawing.Size(91, 15);
-            this.progressLink.TabIndex = 4;
-            this.progressLink.TabStop = true;
-            this.progressLink.Text = "Fitness Progress";
+            this.panel2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel2.BackgroundImage")));
+            this.panel2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.panel2.Controls.Add(this.workoutLink2);
+            this.panel2.Controls.Add(this.progressLink2);
+            this.panel2.Controls.Add(this.routinesLink2);
+            this.panel2.Controls.Add(this.signOut2);
+            this.panel2.Location = new System.Drawing.Point(1, -1);
+            this.panel2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(809, 448);
+            this.panel2.TabIndex = 8;
+            this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
             // 
-            // workoutLink
+            // workoutLink2
             // 
-            this.workoutLink.AutoSize = true;
-            this.workoutLink.Location = new System.Drawing.Point(589, 150);
-            this.workoutLink.Name = "workoutLink";
-            this.workoutLink.Size = new System.Drawing.Size(79, 15);
-            this.workoutLink.TabIndex = 5;
-            this.workoutLink.TabStop = true;
-            this.workoutLink.Text = "Workout Plan";
+            this.workoutLink2.AutoSize = true;
+            this.workoutLink2.Location = new System.Drawing.Point(589, 152);
+            this.workoutLink2.Name = "workoutLink2";
+            this.workoutLink2.Size = new System.Drawing.Size(79, 15);
+            this.workoutLink2.TabIndex = 9;
+            this.workoutLink2.TabStop = true;
+            this.workoutLink2.Text = "Workout Plan";
             // 
-            // listBox1
+            // progressLink2
             // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.ItemHeight = 15;
-            this.listBox1.Location = new System.Drawing.Point(158, 314);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(510, 94);
-            this.listBox1.TabIndex = 6;
+            this.progressLink2.AutoSize = true;
+            this.progressLink2.Location = new System.Drawing.Point(368, 152);
+            this.progressLink2.Name = "progressLink2";
+            this.progressLink2.Size = new System.Drawing.Size(91, 15);
+            this.progressLink2.TabIndex = 8;
+            this.progressLink2.TabStop = true;
+            this.progressLink2.Text = "Fitness Progress";
             // 
-            // muscleLabel
+            // routinesLink2
             // 
-            this.muscleLabel.AutoSize = true;
-            this.muscleLabel.BackColor = System.Drawing.Color.Transparent;
-            this.muscleLabel.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.muscleLabel.Location = new System.Drawing.Point(275, 211);
-            this.muscleLabel.Name = "muscleLabel";
-            this.muscleLabel.Size = new System.Drawing.Size(279, 30);
-            this.muscleLabel.TabIndex = 7;
-            this.muscleLabel.Text = "Choose Your Muscle Group";
+            this.routinesLink2.AutoSize = true;
+            this.routinesLink2.Location = new System.Drawing.Point(150, 152);
+            this.routinesLink2.Name = "routinesLink2";
+            this.routinesLink2.Size = new System.Drawing.Size(94, 15);
+            this.routinesLink2.TabIndex = 7;
+            this.routinesLink2.TabStop = true;
+            this.routinesLink2.Text = "Browse Routines";
+            // 
+            // signOut2
+            // 
+            this.signOut2.AutoSize = true;
+            this.signOut2.BackColor = System.Drawing.Color.Transparent;
+            this.signOut2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.signOut2.Location = new System.Drawing.Point(683, 24);
+            this.signOut2.Name = "signOut2";
+            this.signOut2.Size = new System.Drawing.Size(71, 21);
+            this.signOut2.TabIndex = 6;
+            this.signOut2.TabStop = true;
+            this.signOut2.Text = "Sign Out";
             // 
             // Form1
             // 
@@ -217,6 +280,7 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.signUp);
             this.Controls.Add(this.signIn);
@@ -229,6 +293,8 @@
             this.Text = "Form1";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -251,5 +317,10 @@
         private ComboBox routineDDB;
         private Label muscleLabel;
         private ListBox listBox1;
+        private Panel panel2;
+        private LinkLabel workoutLink2;
+        private LinkLabel progressLink2;
+        private LinkLabel routinesLink2;
+        private LinkLabel signOut2;
     }
 }

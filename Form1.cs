@@ -14,12 +14,19 @@ namespace WinFormsApp1
             InitializeComponent();
             // Hide panel1
             panel1.Visible = false;
+            panel2.Visible = false;
             //this should activate the button click event
             signIn.Click += signIn_Click;
             //linkClicked event of the signout LinkLabel
             signOut.LinkClicked += signOut_LinkClicked;
-            //event of the combobox
+            progressLink.LinkClicked += progressLink_LinkClicked;
+            routinesLink.LinkClicked += routinesLink_LinkClicked;
+            // Event of the combobox
             routineDDB.SelectedIndexChanged += routineDDB_SelectedIndexChanged;
+            // LinkClicked event for routinesLink in panel2
+            routinesLink2.LinkClicked += routinesLink2_LinkClicked;
+            // LinkClicked event for signOut2 in panel2
+            signOut2.LinkClicked += signOut2_LinkClicked;
         }
 
 
@@ -102,13 +109,51 @@ namespace WinFormsApp1
         }
         private void signOut_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            // Hide panel1
+            // Hide panel1 and panel2
             panel1.Visible = false;
+            panel2.Visible = false;
             // Clear email and password textboxes
             emailText.Text = "";
             passwordText.Text = "";
         }
+
+        private void progressLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            // Show panel2 and hide panel1
+            panel1.Visible = false;
+            panel2.Visible = true;
+        }
+
+        private void routinesLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            // Show panel1 and hide panel2
+            panel1.Visible = true;
+            panel2.Visible = false;
+        }
+
+        private void routinesLink2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            // Show panel1 and hide panel2 when routinesLink is clicked on panel2
+            panel1.Visible = true;
+            panel2.Visible = false;
+        }
+
+        private void signOut2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            // Hide both panels
+            panel1.Visible = false;
+            panel2.Visible = false;
+            // Clear email and password textboxes
+            emailText.Text = "";
+            passwordText.Text = "";
+        }
+
         private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void panel2_Paint(object sender, PaintEventArgs e)
         {
 
         }
