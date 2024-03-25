@@ -1,6 +1,8 @@
 using System.Data.SqlClient;
 using System.Windows.Forms;
 using System;
+using System.Text.RegularExpressions;
+
 
 
 namespace WinFormsApp1
@@ -353,56 +355,65 @@ namespace WinFormsApp1
         // Event handler for generateBtn button click
 
         private void generateBtn_Click(object sender, EventArgs e)
-        {           
-                try
+        {
+            try
+            {
+                // Get the current day of the week
+                DayOfWeek currentDay = DateTime.Today.DayOfWeek;
+
+                // Define the query to retrieve the workout plan for the current day of the week
+                string query = "SELECT PlanName, PlanDuration FROM workoutPlan WHERE dayOfTheWeek = @DayOfTheWeek";
+
+                // Create and open a connection to the database
+                using (SqlConnection connection = new SqlConnection(connectionString))
                 {
-                    // Get the current day of the week
-                    DayOfWeek currentDay = DateTime.Today.DayOfWeek;
+                    connection.Open();
 
-                    // Define the query to retrieve the workout plan for the current day of the week
-                    string query = "SELECT PlanName, PlanDuration FROM workoutPlan WHERE dayOfTheWeek = @DayOfTheWeek";
-
-                    // Create and open a connection to the database
-                    using (SqlConnection connection = new SqlConnection(connectionString))
+                    // Create a SqlCommand object with the query and connection
+                    using (SqlCommand command = new SqlCommand(query, connection))
                     {
-                        connection.Open();
+                        // Add parameter to the query to specify the current day of the week
+                        command.Parameters.AddWithValue("@DayOfTheWeek", currentDay.ToString());
 
-                        // Create a SqlCommand object with the query and connection
-                        using (SqlCommand command = new SqlCommand(query, connection))
+                        // Execute the query and read the result
+                        using (SqlDataReader reader = command.ExecuteReader())
                         {
-                            // Add parameter to the query to specify the current day of the week
-                            command.Parameters.AddWithValue("@DayOfTheWeek", currentDay.ToString());
-
-                            // Execute the query and read the result
-                            using (SqlDataReader reader = command.ExecuteReader())
+                            if (reader.Read())
                             {
-                                if (reader.Read())
-                                {
-                                    // Retrieve the workout plan name and duration
-                                    string planName = reader["PlanName"].ToString();
-                                    int planDuration = Convert.ToInt32(reader["PlanDuration"]);
+                                // Retrieve the workout plan name and duration
+                                string planName = reader["PlanName"].ToString();
+                                int planDuration = Convert.ToInt32(reader["PlanDuration"]);
 
-                                    // Display the workout plan information in listBox3
-                                    listBox3.Items.Clear();
-                                listBox3.Items.Add("Hello, today is " + currentDay + " " + DateTime.Today.ToShortDateString() +
-                                                       ". \nYour workout plan today is " + planName + " which should last " +
-                                                       planDuration + " minutes.");
-                                }
-                                else
+                                // Construct the message for the workout plan
+                                string message = "Hello, today is " + currentDay + " " + DateTime.Today.ToShortDateString() +
+                                                 ". Your workout plan today is " + planName + ". This should last " +
+                                                 planDuration + " minutes.";
+
+                                // Split the message into lines based on periods followed by spaces
+                                string[] lines = Regex.Split(message, @"\.\s");
+
+                                // Display the workout plan information in listBox3
+                                listBox3.Items.Clear();
+                                foreach (string line in lines)
                                 {
-                                    // If no workout plan found for the current day, display a message
-                                    listBox3.Items.Clear();
-                                    listBox3.Items.Add("No workout plan found for today.");
+                                    listBox3.Items.Add(line);
                                 }
+                            }
+                            else
+                            {
+                                // If no workout plan found for the current day, display a message
+                                listBox3.Items.Clear();
+                                listBox3.Items.Add("No workout plan found for today.");
                             }
                         }
                     }
                 }
-                catch (Exception ex)
-                {
-                    MessageBox.Show($"An error occurred: {ex.Message}");
-                }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred: {ex.Message}");
+            }
+        }
 
         }
     }
