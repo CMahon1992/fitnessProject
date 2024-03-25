@@ -349,5 +349,60 @@ namespace WinFormsApp1
         {
 
         }
+
+        // Event handler for generateBtn button click
+
+        private void generateBtn_Click(object sender, EventArgs e)
+        {           
+                try
+                {
+                    // Get the current day of the week
+                    DayOfWeek currentDay = DateTime.Today.DayOfWeek;
+
+                    // Define the query to retrieve the workout plan for the current day of the week
+                    string query = "SELECT PlanName, PlanDuration FROM workoutPlan WHERE dayOfTheWeek = @DayOfTheWeek";
+
+                    // Create and open a connection to the database
+                    using (SqlConnection connection = new SqlConnection(connectionString))
+                    {
+                        connection.Open();
+
+                        // Create a SqlCommand object with the query and connection
+                        using (SqlCommand command = new SqlCommand(query, connection))
+                        {
+                            // Add parameter to the query to specify the current day of the week
+                            command.Parameters.AddWithValue("@DayOfTheWeek", currentDay.ToString());
+
+                            // Execute the query and read the result
+                            using (SqlDataReader reader = command.ExecuteReader())
+                            {
+                                if (reader.Read())
+                                {
+                                    // Retrieve the workout plan name and duration
+                                    string planName = reader["PlanName"].ToString();
+                                    int planDuration = Convert.ToInt32(reader["PlanDuration"]);
+
+                                    // Display the workout plan information in listBox3
+                                    listBox3.Items.Clear();
+                                listBox3.Items.Add("Hello, today is " + currentDay + " " + DateTime.Today.ToShortDateString() +
+                                                       ". \nYour workout plan today is " + planName + " which should last " +
+                                                       planDuration + " minutes.");
+                                }
+                                else
+                                {
+                                    // If no workout plan found for the current day, display a message
+                                    listBox3.Items.Clear();
+                                    listBox3.Items.Add("No workout plan found for today.");
+                                }
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"An error occurred: {ex.Message}");
+                }
+            }
+
+        }
     }
-}
