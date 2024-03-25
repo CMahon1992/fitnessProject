@@ -12,27 +12,74 @@ namespace WinFormsApp1
         public Form1()
         {
             InitializeComponent();
-            // Hide panel1
+            // Hide panels
             panel1.Visible = false;
             panel2.Visible = false;
+            panel3.Visible = false;
             //this should activate the button click event
             signIn.Click += signIn_Click;
+            
+            
             //linkClicked event of the signout LinkLabel
             signOut.LinkClicked += signOut_LinkClicked;
+            signOut2.LinkClicked += signOut2_LinkClicked;
+            signOut3.LinkClicked += SignOut3_LinkClicked;
+
             progressLink.LinkClicked += progressLink_LinkClicked;
+            progressLink3.LinkClicked += ProgressLink3_LinkClicked;
             routinesLink.LinkClicked += routinesLink_LinkClicked;
+            routinesLink3.LinkClicked += RoutineLink3_LinkClicked;
+            routinesLink2.LinkClicked += routinesLink2_LinkClicked;
+            workoutLink.LinkClicked += WorkoutLink_LinkClicked;
+            workoutLink2.LinkClicked += WorkoutLink_LinkClicked;
+
             // Event of the combobox
             routineDDB.SelectedIndexChanged += routineDDB_SelectedIndexChanged;
-            // LinkClicked event for routinesLink in panel2
-            routinesLink2.LinkClicked += routinesLink2_LinkClicked;
-            // LinkClicked event for signOut2 in panel2
-            signOut2.LinkClicked += signOut2_LinkClicked;
+          
             // Click event for submitP2 button
             submitP2.Click += submitP2_Click;
             // Event handlers for textboxes to allow only numbers and limit input to 3 digits
             cWeight.KeyPress += NumericTextBox_KeyPress;
-            gWeight.KeyPress += NumericTextBox_KeyPress;
+            gWeight.KeyPress += NumericTextBox_KeyPress;          
         }
+
+        private void SignOut3_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            // Hide panels and clear textboxes
+            panel1.Visible = false;
+            panel2.Visible = false;
+            panel3.Visible = false;
+            emailText.Text = "";
+            passwordText.Text = "";
+        }
+
+        // Event handler for routineLink3 linkLabel
+        private void RoutineLink3_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            // Show panel1 and hide others
+            panel1.Visible = true;
+            panel2.Visible = false;
+            panel3.Visible = false;
+        }
+
+        // Event handler for progressLink3 linkLabel
+        private void ProgressLink3_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            // Show panel2 and hide others
+            panel1.Visible = false;
+            panel2.Visible = true;
+            panel3.Visible = false;
+        }
+
+        // Event handler for workoutLink and workoutLink2
+        private void WorkoutLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            // Hide both panels
+            panel1.Visible = false;
+            panel2.Visible = true;
+            panel3.Visible = true;
+      
+        } 
 
 
         private void signIn_Click(object sender, EventArgs e)
@@ -294,6 +341,11 @@ namespace WinFormsApp1
         }
 
         private void panel2_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void label4_Click(object sender, EventArgs e)
         {
 
         }

@@ -55,8 +55,17 @@
             this.progressLink2 = new System.Windows.Forms.LinkLabel();
             this.routinesLink2 = new System.Windows.Forms.LinkLabel();
             this.signOut2 = new System.Windows.Forms.LinkLabel();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.workoutLink3 = new System.Windows.Forms.LinkLabel();
+            this.progressLink3 = new System.Windows.Forms.LinkLabel();
+            this.routinesLink3 = new System.Windows.Forms.LinkLabel();
+            this.signOut3 = new System.Windows.Forms.LinkLabel();
+            this.label4 = new System.Windows.Forms.Label();
+            this.listBox3 = new System.Windows.Forms.ListBox();
+            this.generateBtn = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
+            this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -226,6 +235,7 @@
             // 
             this.panel2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel2.BackgroundImage")));
             this.panel2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.panel2.Controls.Add(this.panel3);
             this.panel2.Controls.Add(this.submitP2);
             this.panel2.Controls.Add(this.listBox2);
             this.panel2.Controls.Add(this.cWeight);
@@ -337,6 +347,94 @@
             this.signOut2.TabStop = true;
             this.signOut2.Text = "Sign Out";
             // 
+            // panel3
+            // 
+            this.panel3.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel3.BackgroundImage")));
+            this.panel3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.panel3.Controls.Add(this.generateBtn);
+            this.panel3.Controls.Add(this.listBox3);
+            this.panel3.Controls.Add(this.label4);
+            this.panel3.Controls.Add(this.workoutLink3);
+            this.panel3.Controls.Add(this.progressLink3);
+            this.panel3.Controls.Add(this.routinesLink3);
+            this.panel3.Controls.Add(this.signOut3);
+            this.panel3.Location = new System.Drawing.Point(-12, 0);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(812, 458);
+            this.panel3.TabIndex = 16;
+            // 
+            // workoutLink3
+            // 
+            this.workoutLink3.AutoSize = true;
+            this.workoutLink3.Location = new System.Drawing.Point(616, 138);
+            this.workoutLink3.Name = "workoutLink3";
+            this.workoutLink3.Size = new System.Drawing.Size(79, 15);
+            this.workoutLink3.TabIndex = 13;
+            this.workoutLink3.TabStop = true;
+            this.workoutLink3.Text = "Workout Plan";
+            // 
+            // progressLink3
+            // 
+            this.progressLink3.AutoSize = true;
+            this.progressLink3.Location = new System.Drawing.Point(395, 138);
+            this.progressLink3.Name = "progressLink3";
+            this.progressLink3.Size = new System.Drawing.Size(91, 15);
+            this.progressLink3.TabIndex = 12;
+            this.progressLink3.TabStop = true;
+            this.progressLink3.Text = "Fitness Progress";
+            // 
+            // routinesLink3
+            // 
+            this.routinesLink3.AutoSize = true;
+            this.routinesLink3.Location = new System.Drawing.Point(177, 138);
+            this.routinesLink3.Name = "routinesLink3";
+            this.routinesLink3.Size = new System.Drawing.Size(94, 15);
+            this.routinesLink3.TabIndex = 11;
+            this.routinesLink3.TabStop = true;
+            this.routinesLink3.Text = "Browse Routines";
+            // 
+            // signOut3
+            // 
+            this.signOut3.AutoSize = true;
+            this.signOut3.BackColor = System.Drawing.Color.Transparent;
+            this.signOut3.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.signOut3.Location = new System.Drawing.Point(710, 10);
+            this.signOut3.Name = "signOut3";
+            this.signOut3.Size = new System.Drawing.Size(71, 21);
+            this.signOut3.TabIndex = 10;
+            this.signOut3.TabStop = true;
+            this.signOut3.Text = "Sign Out";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.BackColor = System.Drawing.Color.Transparent;
+            this.label4.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label4.Location = new System.Drawing.Point(263, 191);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(149, 30);
+            this.label4.TabIndex = 14;
+            this.label4.Text = "Workout Plan";
+            this.label4.Click += new System.EventHandler(this.label4_Click);
+            // 
+            // listBox3
+            // 
+            this.listBox3.FormattingEnabled = true;
+            this.listBox3.ItemHeight = 15;
+            this.listBox3.Location = new System.Drawing.Point(216, 227);
+            this.listBox3.Name = "listBox3";
+            this.listBox3.Size = new System.Drawing.Size(255, 94);
+            this.listBox3.TabIndex = 15;
+            // 
+            // generateBtn
+            // 
+            this.generateBtn.Location = new System.Drawing.Point(287, 336);
+            this.generateBtn.Name = "generateBtn";
+            this.generateBtn.Size = new System.Drawing.Size(112, 23);
+            this.generateBtn.TabIndex = 16;
+            this.generateBtn.Text = "Generate Plan";
+            this.generateBtn.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -359,6 +457,8 @@
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -392,5 +492,13 @@
         private TextBox gWeight;
         private Label current;
         private Label goal;
+        private Panel panel3;
+        private Label label4;
+        private LinkLabel workoutLink3;
+        private LinkLabel progressLink3;
+        private LinkLabel routinesLink3;
+        private LinkLabel signOut3;
+        private Button generateBtn;
+        private ListBox listBox3;
     }
 }
