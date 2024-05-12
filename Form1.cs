@@ -20,8 +20,9 @@ namespace WinFormsApp1
             panel3.Visible = false;
             //this should activate the button click event
             signIn.Click += signIn_Click;
-            
-            
+            signUp.Click += signUp_Click;
+
+
             //linkClicked event of the signout LinkLabel
             signOut.LinkClicked += signOut_LinkClicked;
             signOut2.LinkClicked += signOut2_LinkClicked;
@@ -123,6 +124,75 @@ namespace WinFormsApp1
             }
 
         }
+
+        private void signUp_Click(object sender, EventArgs e)
+        {
+            // Get the user-entered email and password
+            string email = emailText.Text;
+            string password = passwordText.Text;
+
+            // Check if the email already exists in the login table
+            bool emailExists = CheckIfEmailExistsInLogin(email);
+
+            if (!emailExists)
+            {
+                // If the email doesn't exist, add it to the login table
+                AddEmailToLogin(email, password);
+                MessageBox.Show("You have signed up successfully, please click login button to continue.");
+            }
+            else
+            {
+                // If the email already exists, display a message
+                MessageBox.Show("E-Mail already exists, please login with your email and password.");
+            }
+        }
+
+        private bool CheckIfEmailExistsInLogin(string email)
+        {
+            // Query to check if the email exists in the login table
+            string query = "SELECT COUNT(*) FROM login WHERE email = @Email";
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@Email", email);
+                    connection.Open();
+
+                    // Execute the query and get the result
+                    int count = (int)command.ExecuteScalar();
+
+                    // If count > 0, the email exists in the table
+                    return count > 0;
+                }
+            }
+        }
+
+        private void AddEmailToLogin(string email, string password)
+        {
+            // Query to insert the email and password into the login table
+            string insertQuery = "INSERT INTO login (email, password) VALUES (@Email, @Password)";
+
+            // Create and open a connection to the database
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+
+                // Create a SqlCommand object with the insert query and connection
+                using (SqlCommand command = new SqlCommand(insertQuery, connection))
+                {
+                    // Add parameters to the query to prevent SQL injection
+                    command.Parameters.AddWithValue("@Email", email);
+                    command.Parameters.AddWithValue("@Password", password);
+
+                    // Execute the insert query
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
+
+
+
 
         private void routineDDB_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -361,8 +431,8 @@ namespace WinFormsApp1
                 // Get the current day of the week
                 DayOfWeek currentDay = DateTime.Today.DayOfWeek;
 
-                // Define the query to retrieve the workout plan for the current day of the week
-                string query = "SELECT PlanName, PlanDuration FROM workoutPlan WHERE dayOfTheWeek = @DayOfTheWeek";
+                // query to retrieve a random workout plan for the current day of the week
+                string query = "SELECT TOP 1 PlanName, PlanDuration FROM workoutPlan WHERE dayOfTheWeek = @DayOfTheWeek ORDER BY NEWID()";
 
                 // Create and open a connection to the database
                 using (SqlConnection connection = new SqlConnection(connectionString))
@@ -415,5 +485,9 @@ namespace WinFormsApp1
             }
         }
 
+        private void panel3_Paint(object sender, PaintEventArgs e)
+        {
+
         }
+    }
     }
